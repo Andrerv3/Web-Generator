@@ -2,6 +2,7 @@
 import { business } from '../config/business';
 import '../styles/global.css';
 import WhatsAppFloat from '../components/sections/WhatsAppFloat.astro';
+import Header from '../components/layout/Header.astro';
 import LocalBusinessSchema from '../components/seo/LocalBusinessSchema.astro';
 import FAQSchema from '../components/seo/FAQSchema.astro';
 import ServiceSchema from '../components/seo/ServiceSchema.astro';
@@ -56,6 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, seo.siteUrl);
     <ServiceSchema />
   </head>
   <body class="bg-neutral-light text-neutral-dark min-h-screen flex flex-col font-sans">
+    <Header />
     <slot />
     <WhatsAppFloat />
   </body>

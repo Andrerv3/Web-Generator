@@ -1,0 +1,28 @@
+---
+import { business } from '../../config/business';
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+
+const navItems = [
+  { name: 'Servicios', href: '#servicios' },
+  { name: 'Nosotros', href: '#about' },
+  { name: 'Galería', href: '#galeria' },
+  { name: 'Contacto', href: '#contacto' },
+];
+---
+
+<header class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-neutral-light/20 transition-all duration-300">
+  <Container size="xl" class="flex justify-between items-center py-4">
+    <a href="/" class="text-2xl font-serif font-bold text-primary">{business.brand.name}</a>
+    
+    <nav class="hidden md:flex gap-8">
+      {navItems.map(item => (
+        <a href={item.href} class="text-sm font-medium text-neutral-dark hover:text-secondary transition-colors">
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    <Button variant="primary" size="sm" href="#contacto">Reservar Cita</Button>
+  </Container>
+</header>
