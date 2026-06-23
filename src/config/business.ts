@@ -70,14 +70,14 @@ export const business: BusinessConfig = {
     logo: "/images/client/logo.svg"
   },
   colors: {
-    primary: "#1e293b",       // slate-800
-    primaryHover: "#0f172a",  // slate-900
-    primaryLight: "#f1f5f9",  // slate-100
-    secondary: "#b45309",     // amber-700
-    secondaryHover: "#92400e", // amber-800
-    secondaryLight: "#fef3c7", // amber-100
-    neutralDark: "#0f172a",   // slate-900
-    neutralLight: "#fafafa"   // slate-50
+    primary: "#1a1a1a",       // Negro premium
+    primaryHover: "#000000",
+    primaryLight: "#f8f7f4",  // Crema muy suave
+    secondary: "#c5a059",     // Oro/Bronce premium
+    secondaryHover: "#a58548",
+    secondaryLight: "#fef3c7",
+    neutralDark: "#1a1a1a",
+    neutralLight: "#ffffff"
   },
   contact: {
     phone: "+34 600 000 000",

@@ -4,17 +4,25 @@
 
 @layer base {
   :root {
-    --color-primary: #1e293b;
-    --color-primary-hover: #0f172a;
-    --color-primary-light: #f1f5f9;
-    --color-secondary: #b45309;
-    --color-secondary-hover: #92400e;
+    --color-primary: #1a1a1a;
+    --color-primary-hover: #000000;
+    --color-primary-light: #f8f7f4;
+    --color-secondary: #c5a059;
+    --color-secondary-hover: #a58548;
     --color-secondary-light: #fef3c7;
-    --color-neutral-dark: #0f172a;
-    --color-neutral-light: #fafafa;
+    --color-neutral-dark: #1a1a1a;
+    --color-neutral-light: #ffffff;
   }
   
   html {
     scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-serif;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif tracking-tight text-primary;
   }
 }

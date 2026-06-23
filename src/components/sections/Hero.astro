@@ -8,21 +8,26 @@ const { brand, contact } = business;
 const whatsappUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappMessage)}`;
 ---
 
-<Section id="hero" background="white" class="flex items-center min-h-[80vh]">
-  <Container size="lg" class="text-center">
-    <h1 class="text-5xl md:text-7xl font-bold text-primary mb-6">
-      {brand.name}
-    </h1>
-    <p class="text-xl md:text-2xl text-neutral-dark mb-10 max-w-2xl mx-auto">
-      {brand.slogan}
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button variant="primary" size="lg" href="#contacto">
-        Reservar Cita
-      </Button>
-      <Button variant="secondary" size="lg" href={whatsappUrl} target="_blank">
-        Hablar por WhatsApp
-      </Button>
+<Section id="hero" background="primary-light" class="py-24">
+  <Container size="xl" class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="text-left">
+      <h1 class="text-5xl md:text-7xl font-bold text-primary mb-6">
+        {brand.name}
+      </h1>
+      <p class="text-xl md:text-2xl text-neutral-dark mb-10 opacity-90">
+        {brand.slogan}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <Button variant="primary" size="lg" href="#contacto">
+          Reservar Cita
+        </Button>
+        <Button variant="ghost" size="lg" href={whatsappUrl} target="_blank">
+          Hablar por WhatsApp
+        </Button>
+      </div>
+    </div>
+    <div class="bg-neutral-light rounded-3xl h-[400px] flex items-center justify-center border border-neutral-light/20 shadow-xl">
+      <span class="text-neutral-dark/40 font-medium italic">Imagen de Hero</span>
     </div>
   </Container>
 </Section>
