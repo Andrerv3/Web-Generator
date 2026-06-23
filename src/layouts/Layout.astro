@@ -36,6 +36,8 @@ const canonicalURL = new URL(Astro.url.pathname, seo.siteUrl);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={brand.logo} />
     <link rel="canonical" href={canonicalURL} />
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>{displayTitle}</title>
     <meta name="description" content={displayDescription} />
     

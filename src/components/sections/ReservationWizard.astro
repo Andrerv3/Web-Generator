@@ -1,0 +1,75 @@
+---
+import { business } from '../../config/business';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+
+const { services, reservations } = business;
+---
+
+<div x-data="{ 
+  step: 1, 
+  selectedDate: '', 
+  selectedTime: '', 
+  selectedServices: [],
+  get total() {
+    return this.selectedServices.reduce((sum, serviceName) => {
+      const service = business.services.find(s => s.name === serviceName);
+      return sum + (service ? parseInt(service.price.replace('€', '')) : 0);
+    }, 0);
+  }
+}" class="max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-xl">
+  
+  <!-- Paso 1 -->
+  <div x-show="step === 1">
+    <h3 class="text-2xl font-serif font-bold mb-6">1. Reserva</h3>
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-2">Fecha</label>
+      <input type="date" x-model="selectedDate" class="w-full p-3 border rounded-lg" />
+    </div>
+    <div class="mb-6">
+      <label class="block text-sm font-medium mb-2">Hora</label>
+      <select x-model="selectedTime" class="w-full p-3 border rounded-lg">
+        <option value="">Selecciona una hora</option>
+        {reservations.availableSlots.map(slot => <option value={slot}>{slot}</option>)}
+      </select>
+    </div>
+    <div class="mb-6">
+      <label class="block text-sm font-medium mb-4">Servicios</label>
+      {services.map(s => (
+        <label class="flex items-center gap-3 p-3 border rounded-lg mb-2 hover:bg-neutral-light cursor-pointer">
+          <input type="checkbox" value={s.name} x-model="selectedServices" />
+          <span>{s.name} - <span class="text-secondary font-bold">{s.price}</span></span>
+        </label>
+      ))}
+    </div>
+    <Button variant="primary" class="w-full" @click="if(selectedDate && selectedTime && selectedServices.length > 0) step = 2">Continuar</Button>
+  </div>
+
+  <!-- Paso 2 -->
+  <div x-show="step === 2">
+    <h3 class="text-2xl font-serif font-bold mb-6">2. Confirmación</h3>
+    <div class="bg-neutral-light p-4 rounded-lg mb-6">
+      <p><strong>Fecha:</strong> <span x-text="selectedDate"></span></p>
+      <p><strong>Hora:</strong> <span x-text="selectedTime"></span></p>
+      <p><strong>Servicios:</strong> <span x-text="selectedServices.join(', ')"></span></p>
+      <hr class="my-4"/>
+      <p class="text-xl font-bold">Total: <span x-text="total + '€'"></span></p>
+    </div>
+    <div class="flex gap-4">
+      <Button variant="outline" class="flex-1" @click="step = 1">Atrás</Button>
+      <Button variant="primary" class="flex-1" @click="step = 3">Confirmar y Contactar</Button>
+    </div>
+  </div>
+
+  <!-- Paso 3 -->
+  <div x-show="step === 3">
+    <h3 class="text-2xl font-serif font-bold mb-6">3. Contacto</h3>
+    <form action={business.integrations.useNetlifyForms ? undefined : `https://formspree.io/f/${business.integrations.formspreeId}`} method="POST" data-netlify={business.integrations.useNetlifyForms ? "true" : undefined} name="reservation" class="space-y-4">
+      <input type="hidden" name="resumen" x-model="'Fecha: ' + selectedDate + ' Hora: ' + selectedTime + ' Servicios: ' + selectedServices.join(', ') + ' Total: ' + total + '€'" />
+      <input type="text" name="name" placeholder="Nombre" required class="w-full p-3 border rounded-lg" />
+      <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded-lg" />
+      <Button variant="primary" type="submit" class="w-full">Enviar Solicitud</Button>
+    </form>
+  </div>
+</div>

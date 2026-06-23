@@ -49,6 +49,9 @@ export interface BusinessConfig {
     question: string;
     answer: string;
   }>;
+  reservations: {
+    availableSlots: Array<string>;
+  };
   seo: {
     titleTemplate: string;
     defaultTitle: string;
@@ -117,6 +120,9 @@ export const business: BusinessConfig = {
     { question: "¿Necesito cita previa?", answer: "Sí, recomendamos reservar con antelación." },
     { question: "¿Aceptan tarjeta?", answer: "Sí, aceptamos todas las tarjetas." }
   ],
+  reservations: {
+    availableSlots: ["10:00", "11:00", "12:00", "13:00", "16:00", "17:00", "18:00", "19:00"]
+  },
   seo: {
     titleTemplate: "%s | Barbería Tradición",
     defaultTitle: "Barbería Tradición - Barbería clásica en Madrid",

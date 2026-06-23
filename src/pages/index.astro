@@ -6,9 +6,12 @@ import About from '../components/sections/About.astro';
 import Gallery from '../components/sections/Gallery.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
 import FAQ from '../components/sections/FAQ.astro';
+import Map from '../components/sections/Map.astro';
+import ReservationWizard from '../components/sections/ReservationWizard.astro';
 import Contact from '../components/sections/Contact.astro';
 import CTA from '../components/sections/CTA.astro';
-import Map from '../components/sections/Map.astro';
+import Section from '../components/ui/Section.astro';
+import Container from '../components/ui/Container.astro';
 ---
 
 <Layout>
@@ -18,7 +21,14 @@ import Map from '../components/sections/Map.astro';
   <Gallery />
   <Testimonials />
   <FAQ />
+  <Section id="reservar" background="light">
+    <Container size="md">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-12">Reserva tu cita</h2>
+        <ReservationWizard />
+    </Container>
+  </Section>
   <Map />
   <Contact />
   <CTA />
 </Layout>
+
