@@ -1,0 +1,22 @@
+---
+import { business } from '../../config/business';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+
+const { about } = business;
+---
+
+<Section id="about" background="white">
+  <Container size="lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">{about.title}</h2>
+        <p class="text-lg text-neutral-dark mb-4">{about.description1}</p>
+        {about.description2 && <p class="text-lg text-neutral-dark">{about.description2}</p>}
+      </div>
+      <div class="bg-neutral-light rounded-xl h-64 md:h-96 flex items-center justify-center border border-neutral-light/20">
+        <span class="text-neutral-dark/40 font-medium">Imagen del Negocio</span>
+      </div>
+    </div>
+  </Container>
+</Section>

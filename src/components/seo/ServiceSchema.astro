@@ -1,0 +1,17 @@
+---
+import { business } from '@/config/business';
+
+const { services, seo } = business;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": services.map(s => s.name),
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": business.brand.name
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

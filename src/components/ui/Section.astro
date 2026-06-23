@@ -1,0 +1,22 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  background?: 'light' | 'dark' | 'primary-light' | 'white';
+}
+
+const { id, class: className, background = 'white' } = Astro.props;
+
+const backgrounds = {
+  white: 'bg-white text-neutral-dark',
+  light: 'bg-neutral-light text-neutral-dark',
+  dark: 'bg-primary text-white',
+  'primary-light': 'bg-primary-light text-neutral-dark'
+};
+
+const classes = ['py-16 md:py-24 relative overflow-hidden', backgrounds[background], className].filter(Boolean).join(' ');
+---
+
+<section id={id} class={classes}>
+  <slot />
+</section>

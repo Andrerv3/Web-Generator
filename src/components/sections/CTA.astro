@@ -1,0 +1,19 @@
+---
+import { business } from '../../config/business';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+
+const { brand, contact } = business;
+const whatsappUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappMessage)}`;
+---
+
+<Section id="cta" background="dark" class="text-center">
+  <Container size="md">
+    <h2 class="text-3xl md:text-5xl font-bold mb-8">¿Listo para mejorar tu estilo?</h2>
+    <p class="text-xl mb-10 opacity-90">Reserva tu cita en {brand.name} hoy mismo.</p>
+    <Button variant="secondary" size="lg" href={whatsappUrl} target="_blank">
+      Contactar por WhatsApp
+    </Button>
+  </Container>
+</Section>

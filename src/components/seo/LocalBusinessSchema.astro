@@ -1,0 +1,31 @@
+---
+import { business } from '@/config/business';
+
+const { brand, contact, seo, schedule } = business;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": brand.name,
+  "image": `${seo.siteUrl}${brand.ogImage}`,
+  "@id": seo.siteUrl,
+  "url": seo.siteUrl,
+  "telephone": contact.phone,
+  "email": contact.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": contact.address,
+    "addressLocality": "Madrid",
+    "addressRegion": "Madrid",
+    "addressCountry": "ES"
+  },
+  "openingHoursSpecification": schedule.map(item => ({
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": item.days,
+    "opens": item.hours.split(' - ')[0],
+    "closes": item.hours.split(' - ')[1]
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #1e293b;
+    --color-primary-hover: #0f172a;
+    --color-primary-light: #f1f5f9;
+    --color-secondary: #b45309;
+    --color-secondary-hover: #92400e;
+    --color-secondary-light: #fef3c7;
+    --color-neutral-dark: #0f172a;
+    --color-neutral-light: #fafafa;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}

@@ -1,0 +1,28 @@
+---
+import { business } from '../../config/business';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Card from '../ui/Card.astro';
+import Icon from '../ui/Icon.astro';
+
+const { testimonials } = business;
+---
+
+<Section id="testimonios" background="light">
+  <Container size="lg">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-12">Lo que dicen nuestros clientes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {testimonials.map((t) => (
+        <Card class="p-6">
+          <div class="flex mb-4">
+            {Array.from({ length: t.rating }).map(() => (
+              <Icon name="star" class="text-secondary w-5 h-5" />
+            ))}
+          </div>
+          <p class="text-neutral-dark mb-4 italic">"{t.comment}"</p>
+          <p class="font-bold text-primary">— {t.name}</p>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</Section>

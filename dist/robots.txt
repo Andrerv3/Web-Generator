@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://barberiatradicion.com/sitemap-index.xml

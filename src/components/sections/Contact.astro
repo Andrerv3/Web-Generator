@@ -1,0 +1,57 @@
+---
+import { business } from '../../config/business';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+
+const { contact, schedule, integrations } = business;
+const actionUrl = integrations.useNetlifyForms ? undefined : `https://formspree.io/f/${integrations.formspreeId}`;
+---
+
+<Section id="contacto" background="white">
+  <Container size="lg">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-12">Contacto</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <Icon name="map-pin" class="text-secondary w-6 h-6 mt-1" />
+          <div>
+            <h3 class="font-bold text-primary">Dirección</h3>
+            <p class="text-neutral-dark">{contact.address}</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <Icon name="phone" class="text-secondary w-6 h-6 mt-1" />
+          <div>
+            <h3 class="font-bold text-primary">Teléfono</h3>
+            <p class="text-neutral-dark">{contact.phone}</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <Icon name="clock" class="text-secondary w-6 h-6 mt-1" />
+          <div>
+            <h3 class="font-bold text-primary">Horario</h3>
+            {schedule.map((item) => (
+              <p class="text-neutral-dark">{item.days}: {item.hours}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <form 
+        action={actionUrl} 
+        method="POST" 
+        data-netlify={integrations.useNetlifyForms ? "true" : undefined}
+        name="contact" 
+        class="space-y-4"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="text" name="name" placeholder="Tu nombre" required class="w-full p-3 border border-neutral-light/50 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+        <input type="email" name="email" placeholder="Tu email" required class="w-full p-3 border border-neutral-light/50 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+        <textarea name="message" placeholder="Tu mensaje" rows="4" required class="w-full p-3 border border-neutral-light/50 rounded-lg focus:ring-2 focus:ring-primary outline-none"></textarea>
+        <Button variant="primary" type="submit" class="w-full">Enviar Mensaje</Button>
+      </form>
+    </div>
+  </Container>
+</Section>

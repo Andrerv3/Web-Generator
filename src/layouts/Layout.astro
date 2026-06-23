@@ -1,0 +1,62 @@
+---
+import { business } from '../config/business';
+import '../styles/global.css';
+import WhatsAppFloat from '../components/sections/WhatsAppFloat.astro';
+import LocalBusinessSchema from '../components/seo/LocalBusinessSchema.astro';
+import FAQSchema from '../components/seo/FAQSchema.astro';
+import ServiceSchema from '../components/seo/ServiceSchema.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const { brand, colors, seo } = business;
+
+const displayTitle = title ? seo.titleTemplate.replace('%s', title) : seo.defaultTitle;
+const displayDescription = description || seo.defaultDescription;
+const canonicalURL = new URL(Astro.url.pathname, seo.siteUrl);
+---
+
+<!DOCTYPE html>
+<html lang={seo.lang} style={`
+  --color-primary: ${colors.primary};
+  --color-primary-hover: ${colors.primaryHover};
+  --color-primary-light: ${colors.primaryLight};
+  --color-secondary: ${colors.secondary};
+  --color-secondary-hover: ${colors.secondaryHover};
+  --color-secondary-light: ${colors.secondaryLight};
+  --color-neutral-dark: ${colors.neutralDark};
+  --color-neutral-light: ${colors.neutralLight};
+`}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={brand.logo} />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{displayTitle}</title>
+    <meta name="description" content={displayDescription} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={displayTitle} />
+    <meta property="og:description" content={displayDescription} />
+    <meta property="og:image" content={`${seo.siteUrl}${seo.ogImage}`} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={displayTitle} />
+    <meta name="twitter:description" content={displayDescription} />
+    <meta name="twitter:image" content={`${seo.siteUrl}${seo.ogImage}`} />
+
+    <LocalBusinessSchema />
+    <FAQSchema />
+    <ServiceSchema />
+  </head>
+  <body class="bg-neutral-light text-neutral-dark min-h-screen flex flex-col font-sans">
+    <slot />
+    <WhatsAppFloat />
+  </body>
+</html>

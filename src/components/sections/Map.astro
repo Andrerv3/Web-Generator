@@ -1,0 +1,27 @@
+---
+import { business } from '../../config/business';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+
+const { contact } = business;
+---
+
+<Section id="ubicacion" background="light">
+  <Container size="lg" class="flex flex-col items-center">
+    <div class="w-full h-96 rounded-xl overflow-hidden shadow-sm mb-6 border border-neutral-light/20">
+      <iframe 
+        src={contact.googleMapsEmbed} 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+    <Button variant="outline" href={contact.googleMapsLink} target="_blank" rel="noopener noreferrer">
+      Abrir en Google Maps
+    </Button>
+  </Container>
+</Section>
